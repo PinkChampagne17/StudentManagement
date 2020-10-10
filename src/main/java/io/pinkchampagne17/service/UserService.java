@@ -8,4 +8,5 @@ public interface UserService {
     User getUserByName(String name);
 //    User updateUserName(Long id, String name);
 //    User updatePassword(Long id, String password);
+// end;
 }
