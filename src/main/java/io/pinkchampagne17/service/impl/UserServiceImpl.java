@@ -17,38 +17,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(User user) {
+    public User createUser(User user) {
         try (SqlSession sqlSession = this.sqlSessionService.openSession()) {
 
             UserRepository userRepository = sqlSession.getMapper(UserRepository.class);
 
-            userRepository.addUser(user);
+            userRepository.createUser(user);
             sqlSession.commit();
 
-            User newUser = userRepository.getUserByName(user.getName());
-            return newUser;
-
-        } catch (Exception ex) {
-            return null;
+            return userRepository.getUserById(user.getId());
         }
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         try (SqlSession sqlSession = this.sqlSessionService.openSession()) {
-
             UserRepository userRepository = sqlSession.getMapper(UserRepository.class);
-            User user = userRepository.getUserById(id);
-            return user;
+            return userRepository.getUserById(id);
         }
     }
 
     @Override
-    public User getUserByName(String name) {
+    public User getUserByIdAndPassword(String id, String password) {
         try (SqlSession sqlSession = this.sqlSessionService.openSession()) {
             UserRepository userRepository = sqlSession.getMapper(UserRepository.class);
-            User user = userRepository.getUserByName(name);
-            return user;
+            return userRepository.getUserByIdAndPassword(id, password);
         }
     }
 }

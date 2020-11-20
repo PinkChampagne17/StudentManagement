@@ -12,13 +12,13 @@ import java.io.InputStream;
 @Service
 public class SqlSessionServiceImpl implements SqlSessionService {
 
-    private final SqlSessionFactory sqlSessionFactory;
+    private static final SqlSessionFactory sqlSessionFactory;
 
-    public SqlSessionServiceImpl() {
+    static {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Application.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
-        this.sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
+        sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
     }
 
     @Override

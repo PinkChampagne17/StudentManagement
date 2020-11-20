@@ -1,12 +1,13 @@
 package io.pinkchampagne17.entity;
 
-import io.pinkchampagne17.baseEntity.BaseUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-
 @Data
-public class User extends BaseUser {
-    @NotNull
+public class User{
+
+    private String id;
+
+    @JsonIgnore
     private String password;
 }
