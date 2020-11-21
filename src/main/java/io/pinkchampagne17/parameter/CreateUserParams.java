@@ -1,5 +1,6 @@
 package io.pinkchampagne17.parameter;
 
+import io.pinkchampagne17.entity.User;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -16,5 +17,15 @@ public class CreateUserParams {
     private String password;
 
     @NotNull
-    private boolean isTeacher;
+    private Boolean isTeacher;
+
+    public User toUser() {
+        return new User() {
+            {
+                setId(id);
+                setPassword(password);
+                setIsTeacher(isTeacher);
+            }
+        };
+    }
 }

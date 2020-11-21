@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.pinkchampagne17.repository.UserRepository">
     <insert id="createUser" parameterType="io.pinkchampagne17.entity.User">
-        insert into user(id, password) VALUES (#{id}, #{password})
+        insert into user(id, password, is_teacher) VALUES (#{id}, #{password}, #{isTeacher})
     </insert>
     <select id="getUserById" resultType="io.pinkchampagne17.entity.User">
-        select * from user where id = #{id} and delete_at is null
+        select id, password, is_teacher as isTeacher, avatar, name, gender, phone, email, student_id, dormitory from user where id = #{id} and delete_at is null
     </select>
     <select id="getUserByIdAndPassword" resultType="io.pinkchampagne17.entity.User">
         select * from user where id = #{id} and password = #{password} and delete_at is null

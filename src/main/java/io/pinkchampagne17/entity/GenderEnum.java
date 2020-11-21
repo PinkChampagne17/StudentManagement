@@ -1,7 +1,7 @@
 package io.pinkchampagne17.entity;
 
 public enum GenderEnum {
-    MALE(0), FEMALE(1), OTHER(2), SECRET(3);
+    SECRET(0), MALE(1), FEMALE(2), OTHER(3);
 
     private int gender;
 

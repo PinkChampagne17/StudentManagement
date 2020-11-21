@@ -17,10 +17,12 @@ public class GlobalExceptionHandler {
         System.out.println(e);
 
         if (e instanceof BindingResultHasErrorException) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorMessage() {{
-                setStatus(HttpStatus.BAD_REQUEST.value());
-                setMessage("传入数据不符合要求。");
-            }});
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorMessage() {
+                {
+                    setStatus(HttpStatus.BAD_REQUEST.value());
+                    setMessage("传入数据不符合要求。");
+                }
+            });
         }
 
         if (e instanceof CustomException) {

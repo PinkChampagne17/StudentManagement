@@ -31,12 +31,7 @@ public class UserController {
             throw new BindingResultHasErrorException();
         }
 
-        User user = userService.createUser(new User() {
-            {
-                setId(params.getId());
-                setPassword(params.getPassword());
-            }
-        });
+        User user = userService.createUser(params.toUser());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
