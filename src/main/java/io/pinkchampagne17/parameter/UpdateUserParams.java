@@ -7,8 +7,6 @@ import javax.validation.constraints.Size;
 
 @Data
 public class UpdateUserParams {
-    @NotNull
-    @Size(min = 5, max = 20, message = "id需在5-20个字符之间")
     private String id;
 
     @Size(min = 2, max = 15, message = "姓名(name)需在2-15个字之间")

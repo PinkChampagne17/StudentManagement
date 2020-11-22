@@ -8,7 +8,6 @@ import io.pinkchampagne17.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -55,13 +54,14 @@ public class UserController {
     /**
      * 更新用户资料
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody @Valid UpdateUserParams params, BindingResult bindingResult) throws BindingResultHasErrorException {
+    @PutMapping("/{id:.{5,20}}")
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody @Valid UpdateUserParams params, BindingResult bindingResult) throws BindingResultHasErrorException {
 
         if (bindingResult.hasErrors()) {
             throw new BindingResultHasErrorException(bindingResult);
         }
 
+        params.setId(id);
         User user = userService.updateUser(params);
 
         return ResponseEntity.ok(user);
