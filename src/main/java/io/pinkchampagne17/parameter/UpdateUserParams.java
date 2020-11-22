@@ -1,7 +1,5 @@
 package io.pinkchampagne17.parameter;
 
-import io.pinkchampagne17.entity.GenderEnum;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -10,11 +8,11 @@ public class UpdateUserParams {
     @Size(min = 5, max = 20)
     private String id;
 
-    @Size(max = 15)
+    @Size(min = 2, max = 15)
     private String name;
 
     @NotNull
-    private GenderEnum gender;
+    private Integer gender;
 
     @Size(max = 11)
     private String phone;

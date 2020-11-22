@@ -1,6 +1,8 @@
 package io.pinkchampagne17.service.impl;
 
 import io.pinkchampagne17.entity.User;
+import io.pinkchampagne17.parameter.CreateUserParams;
+import io.pinkchampagne17.parameter.UpdateUserParams;
 import io.pinkchampagne17.repository.UserRepository;
 import io.pinkchampagne17.service.SqlSessionService;
 import io.pinkchampagne17.service.UserService;
@@ -18,19 +20,19 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 创建用户
-     * @param user user
+     * @param params CreateUserParams
      * @return 已创建成功的user对象
      */
     @Override
-    public User createUser(User user) {
+    public User createUser(CreateUserParams params) {
         try (SqlSession sqlSession = this.sqlSessionService.openSession()) {
 
             UserRepository userRepository = sqlSession.getMapper(UserRepository.class);
 
-            userRepository.createUser(user);
+            userRepository.createUser(params);
             sqlSession.commit();
 
-            return userRepository.getUserById(user.getId());
+            return userRepository.getUserById(params.getId());
         }
     }
 
@@ -60,4 +62,15 @@ public class UserServiceImpl implements UserService {
             return userRepository.getUserByIdAndPassword(id, password);
         }
     }
+
+    @Override
+    public User UpdateUser(UpdateUserParams params) {
+        try (SqlSession sqlSession = this.sqlSessionService.openSession()) {
+            UserRepository userRepository = sqlSession.getMapper(UserRepository.class);
+
+            return userRepository.getUserByIdAndPassword(id, password);
+        }
+    }
+
+
 }

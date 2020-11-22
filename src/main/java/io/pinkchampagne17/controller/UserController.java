@@ -31,7 +31,7 @@ public class UserController {
             throw new BindingResultHasErrorException();
         }
 
-        User user = userService.createUser(params.toUser());
+        User user = userService.createUser(params);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
