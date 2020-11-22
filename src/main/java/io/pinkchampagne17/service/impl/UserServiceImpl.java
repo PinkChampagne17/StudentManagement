@@ -63,14 +63,19 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 更新用户资料
+     * @param params UpdateUserParams
+     * @return 更新后的user对象
+     */
     @Override
-    public User UpdateUser(UpdateUserParams params) {
+    public User updateUser(UpdateUserParams params) {
         try (SqlSession sqlSession = this.sqlSessionService.openSession()) {
             UserRepository userRepository = sqlSession.getMapper(UserRepository.class);
-
-            return userRepository.getUserByIdAndPassword(id, password);
+            userRepository.updateUser(params);
+            sqlSession.commit();
+            return userRepository.getUserById(params.getId());
         }
     }
-
 
 }

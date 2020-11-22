@@ -8,5 +8,5 @@ public interface UserService {
     User createUser(CreateUserParams params);
     User getUserById(String id);
     User getUserByIdAndPassword(String id, String password);
-    User UpdateUser(UpdateUserParams params);
+    User updateUser(UpdateUserParams params);
 }

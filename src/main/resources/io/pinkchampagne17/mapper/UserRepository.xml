@@ -7,7 +7,7 @@
         insert into user(id, password, is_teacher) VALUES (#{id}, #{password}, #{isTeacher})
     </insert>
     <select id="getUserById" resultType="io.pinkchampagne17.entity.User">
-        select id, password, is_teacher as isTeacher, avatar, name, gender, phone, email, student_id, dormitory
+        select id, password, is_teacher as isTeacher, avatar, name, gender, phone, email, student_id as studentId, dormitory
         from user
         where id = #{id}
     </select>

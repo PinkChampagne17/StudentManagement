@@ -36,7 +36,7 @@ public class AuthController {
             HttpServletResponse response) throws BindingResultHasErrorException, CustomException {
 
         if (bindingResult.hasErrors()) {
-            throw new BindingResultHasErrorException();
+            throw new BindingResultHasErrorException(bindingResult);
         }
 
         User user = userService.getUserByIdAndPassword(params.getId(), params.getPassword());
