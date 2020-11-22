@@ -18,4 +18,9 @@ public class CustomException extends Exception {
     public ErrorMessage getErrorMessage() {
         return errorMessage;
     }
+
+    @Override
+    public String getMessage() {
+        return this.errorMessage.getMessage();
+    }
 }

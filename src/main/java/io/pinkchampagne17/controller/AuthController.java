@@ -30,10 +30,9 @@ public class AuthController {
      * 获取token
      */
     @PostMapping("/token")
-    public ResponseEntity<?> CreateToken(
-            @RequestBody @Valid CreateTokenParams params,
-            BindingResult bindingResult,
-            HttpServletResponse response) throws BindingResultHasErrorException, CustomException {
+    public ResponseEntity<?> CreateToken(@RequestBody @Valid CreateTokenParams params,
+                                         BindingResult bindingResult,
+                                         HttpServletResponse response) throws CustomException {
 
         if (bindingResult.hasErrors()) {
             throw new BindingResultHasErrorException(bindingResult);
