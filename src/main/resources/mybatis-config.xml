@@ -16,5 +16,6 @@
     </environments>
     <mappers>
         <mapper resource="io/pinkchampagne17/mapper/UserRepository.xml"/>
+        <mapper resource="io/pinkchampagne17/mapper/ClassRepository.xml"/>
     </mappers>
 </configuration>

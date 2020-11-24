@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.pinkchampagne17.repository.ClassRepository">
+    <insert id="createClass" parameterType="io.pinkchampagne17.parameter.CreateClassParams" useGeneratedKeys="true" keyProperty="id">
+        insert into class(name, school, department, major, year, creator_user_id, invite_code)
+        values (#{name}, #{school}, #{department}, #{major}, #{year}, #{creatorUserId}, #{inviteCode})
+    </insert>
+    <select id="getClassById" resultType="io.pinkchampagne17.entity.Class" parameterType="java.lang.Long">
+        select id, name, school, department, major, year, creator_user_id as creatorUserId, invite_code as inviteCode
+        from class
+        where id=#{id}
+    </select>
+<!--    <select id="getMemberById" resultType="">-->
+
+<!--    </select>-->
+<!--    <insert id="addMember" parameterType="">-->
+
+<!--    </insert>-->
+<!--    <delete id="removeMember" parameterType="">-->
+
+<!--    </delete>-->
+</mapper>
