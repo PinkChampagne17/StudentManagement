@@ -55,7 +55,9 @@ public class UserController {
      * 更新用户资料
      */
     @PutMapping("/{id:.{5,20}}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody @Valid UpdateUserParams params, BindingResult bindingResult) throws BindingResultHasErrorException {
+    public ResponseEntity<User> updateUser(@PathVariable String id,
+                                           @RequestBody @Valid UpdateUserParams params,
+                                           BindingResult bindingResult) throws BindingResultHasErrorException {
 
         if (bindingResult.hasErrors()) {
             throw new BindingResultHasErrorException(bindingResult);
