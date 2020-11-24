@@ -21,6 +21,7 @@ public class Application {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
+                        .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
                         .allowedOrigins("http://localhost:5050")
                         .allowCredentials(true);
             }
