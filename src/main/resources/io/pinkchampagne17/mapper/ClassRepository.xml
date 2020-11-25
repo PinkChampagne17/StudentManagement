@@ -12,13 +12,19 @@
         from class
         where id=#{id}
     </select>
-<!--    <select id="getMemberById" resultType="">-->
-
-<!--    </select>-->
-<!--    <insert id="addMember" parameterType="">-->
-
-<!--    </insert>-->
-<!--    <delete id="removeMember" parameterType="">-->
-
-<!--    </delete>-->
+    <select id="getMemberById" resultType="io.pinkchampagne17.entity.User" parameterType="java.lang.Long">
+        select id, is_teacher as isTeacher, avatar, name, gender, phone, email, student_id as studentId, dormitory
+        from user
+        where class_id=#{id}
+    </select>
+    <update id="addMember">
+        update user
+        set class_id=#{classId}
+        where id=#{userId}
+    </update>
+    <delete id="removeMember" parameterType="java.lang.String">
+        update user
+        set class_id=NULL
+        where id=#{userId}
+    </delete>
 </mapper>

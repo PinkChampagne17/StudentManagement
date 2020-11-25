@@ -9,7 +9,7 @@ import java.util.List;
 public interface ClassRepository {
     int createClass(CreateClassParams params);
     Class getClassById(Long id);
-//    List<User> getMemberById(Long id);
-//    int addMember(Long classId, String userId, String inviteCode);
-//    int removeMember(Long classId, String userId);
+    List<User> getMemberById(Long id);
+    int addMember(Long classId, String userId);
+    int removeMember(String userId);
 }
