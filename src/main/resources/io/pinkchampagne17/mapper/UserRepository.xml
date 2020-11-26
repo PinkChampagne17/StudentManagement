@@ -7,9 +7,23 @@
         insert into user(id, password, is_teacher) values (#{id}, #{password}, #{isTeacher})
     </insert>
     <select id="getUserById" resultType="io.pinkchampagne17.entity.User">
-        select id, is_teacher as isTeacher, avatar, name, gender, phone, email, student_id as studentId, dormitory
-        from user
-        where id = #{id}
+        select
+            u.id,
+            u.password,
+            u.is_teacher as isTeacher,
+            u.avatar,
+            u.name,
+            u.gender,
+            u.phone,
+            u.email,
+            u.dormitory,
+            c.name as className,
+            c.school,
+            c.department,
+            c.major,
+            c.year
+        from user u join class c on u.class_id=c.id
+        where u.id = #{id}
     </select>
     <select id="getUserByIdAndPassword" resultType="io.pinkchampagne17.entity.User">
         select *

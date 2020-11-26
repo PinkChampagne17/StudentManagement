@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class User {
-
     private String id;
     private Boolean isTeacher;
     private String avatar;
@@ -14,4 +13,9 @@ public class User {
     private String email;
     private String studentId;
     private String dormitory;
+    private String className;
+    private String school;
+    private String department;
+    private String major;
+    private Integer year;
 }
