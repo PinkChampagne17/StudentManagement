@@ -28,14 +28,14 @@ public class ClassController {
      */
     @PostMapping()
     public ResponseEntity<Class> createClass(@RequestBody @Valid CreateClassParams params,
-                                             @CookieValue("token") String token,
+                                             @CookieValue("token") String userId,
                                              BindingResult bindingResult) throws BindingResultHasErrorException {
 
         if (bindingResult.hasErrors()) {
             throw new BindingResultHasErrorException(bindingResult);
         }
 
-        params.setCreatorUserId(token);
+        params.setCreatorUserId(userId);
         Class classInstance = classService.createClass(params);
         return ResponseEntity.status(HttpStatus.CREATED).body(classInstance);
     }
@@ -82,8 +82,8 @@ public class ClassController {
      * @param userId 用户id
      * @return
      */
-    @DeleteMapping("/{id}/members")
-    public ResponseEntity<?> removeMember(@PathVariable Long id, @RequestParam("userId") String userId) {
+    @DeleteMapping("/{id}/members/{userId}")
+    public ResponseEntity<?> removeMember(@PathVariable Long id, @PathVariable String userId) {
         classService.removeMember(userId);
         return ResponseEntity.noContent().build();
     }
