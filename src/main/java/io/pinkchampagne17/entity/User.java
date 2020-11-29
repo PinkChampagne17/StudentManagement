@@ -13,6 +13,7 @@ public class User {
     private String email;
     private String studentId;
     private String dormitory;
+    private Long classId;
     private String className;
     private String school;
     private String department;

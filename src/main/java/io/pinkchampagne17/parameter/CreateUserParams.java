@@ -17,4 +17,8 @@ public class CreateUserParams {
 
     @NotNull(message = "是否为教师(isTeacher)不能为空")
     private Boolean isTeacher;
+
+    @NotNull
+    @Size(min = 2, max = 15, message = "姓名(name)需在2-15个字之间")
+    private String name;
 }
