@@ -46,6 +46,14 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public List<Class> getClassesByCreatorUserId(String creatorUserId) {
+        try (SqlSession sqlSession = sqlSessionService.openSession()) {
+            ClassRepository classRepository = sqlSession.getMapper(ClassRepository.class);
+            return classRepository.getClassesByCreatorUserId(creatorUserId);
+        }
+    }
+
+    @Override
     public List<User> getMemberById(Long id) {
         try (SqlSession sqlSession = sqlSessionService.openSession()) {
             ClassRepository classRepository = sqlSession.getMapper(ClassRepository.class);
@@ -54,11 +62,17 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public void addMember(Long classId, String userId) {
+    public boolean addMember(Long classId, String userId) {
         try (SqlSession sqlSession = sqlSessionService.openSession()) {
+
             ClassRepository classRepository = sqlSession.getMapper(ClassRepository.class);
+
+            if (classRepository.getClassById(classId) == null) {
+                return false;
+            }
             classRepository.addMember(classId, userId);
             sqlSession.commit();
+            return true;
         }
     }
 

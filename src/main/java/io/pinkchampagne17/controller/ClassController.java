@@ -1,8 +1,10 @@
 package io.pinkchampagne17.controller;
 
 import io.pinkchampagne17.entity.Class;
+import io.pinkchampagne17.entity.ErrorMessage;
 import io.pinkchampagne17.entity.User;
 import io.pinkchampagne17.exception.BindingResultHasErrorException;
+import io.pinkchampagne17.exception.CustomException;
 import io.pinkchampagne17.parameter.CreateClassParams;
 import io.pinkchampagne17.service.ClassService;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,6 +42,17 @@ public class ClassController {
         params.setCreatorUserId(userId);
         Class classInstance = classService.createClass(params);
         return ResponseEntity.status(HttpStatus.CREATED).body(classInstance);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Class>> getClasses(@RequestParam("creatorUserId") String creatorUserId) {
+
+        List<Class> classes = classService.getClassesByCreatorUserId(creatorUserId);
+
+        if (classes == null) {
+            return ResponseEntity.ok(new ArrayList<>());
+        }
+        return ResponseEntity.ok(classes);
     }
 
     /**
@@ -71,8 +86,18 @@ public class ClassController {
      * @return
      */
     @PostMapping("/{id}/members")
-    public ResponseEntity<?> addMember(@PathVariable Long id, @RequestParam("userId") String userId) {
-        classService.addMember(id, userId);
+    public ResponseEntity<?> addMember(@PathVariable Long id, @RequestParam("userId") String userId) throws CustomException {
+
+        boolean success = classService.addMember(id, userId);
+
+        if (!success) {
+            throw new CustomException(new ErrorMessage() {
+                {
+                    setMessage("班级不存在");
+                    setStatus(HttpStatus.BAD_REQUEST.value());
+                }
+            });
+        }
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

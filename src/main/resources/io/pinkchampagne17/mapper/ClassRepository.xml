@@ -12,6 +12,11 @@
         from class
         where id=#{id}
     </select>
+    <select id="getClassesByCreatorUserId" resultType="io.pinkchampagne17.entity.Class" parameterType="java.lang.String">
+        select id, name, school, department, major, year, creator_user_id as creatorUserId, invite_code as inviteCode
+        from class
+        where creator_user_id=#{creatorUserId}
+    </select>
     <select id="getMemberById" resultType="io.pinkchampagne17.entity.User" parameterType="java.lang.Long">
         select id, is_teacher as isTeacher, avatar, name, gender, phone, email, student_id as studentId, dormitory
         from user

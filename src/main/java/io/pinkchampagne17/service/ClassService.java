@@ -22,6 +22,13 @@ public interface ClassService {
     Class getClassById(Long id);
 
     /**
+     * 通过userId获取该用户创建的班级
+     * @param creatorUserId 创建人userId
+     * @return 符合条件的多个班级
+     */
+    List<Class> getClassesByCreatorUserId(String creatorUserId);
+
+    /**
      * 通过id获取班级成员
      * @param id 班级id
      * @return 班级成员
@@ -33,7 +40,7 @@ public interface ClassService {
      * @param classId 班级id
      * @param userId 用户id
      */
-    void addMember(Long classId, String userId);
+    boolean addMember(Long classId, String userId);
 
     /**
      * 移除班级成员
