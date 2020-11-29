@@ -22,7 +22,7 @@ public class Application {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
-                        .allowedOrigins("http://localhost:5050")
+                        .allowedOrigins("*")
                         .allowCredentials(true);
             }
         };
