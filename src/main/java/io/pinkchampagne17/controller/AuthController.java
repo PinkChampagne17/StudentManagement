@@ -55,6 +55,12 @@ public class AuthController {
                 setPath("/");
             }
         });
+        response.addCookie(new Cookie("isTeacher", user.getIsTeacher().toString()) {
+            {
+                setMaxAge(7 * 24 * 60 * 60);
+                setPath("/");
+            }
+        });
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
